@@ -26,6 +26,10 @@ session_start();
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./asset/css/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
       --menu-width: 300px;
@@ -91,8 +95,12 @@ session_start();
     <div class="card o-hidden border-0 shadow-lg my-5">
       <div class="card-body p-0">
         <div class="p-5">
+          <div class="d-flex align-items-start justify-content-center">
+            <i class="bi bi-slack text-primary-emphasis fa-2x mx-2 fs-2"></i>
+            <h1 class="text-primary-emphasis" style="font-family: 'Nunito', sans-serif;">foodplatter</h1>
+          </div>
           <div class="text-center">
-            <h1 class="mb-4 title">歡迎使用廠商端系統</h1>
+            <h2 class="mb-4 title">歡迎使用廠商端系統</h2>
           </div>
           <form class="user" action="./doShopLogin.php" method="post">
             <div class="form-group">

@@ -53,7 +53,7 @@ if (isset($_SESSION["admin"])) {
                                         <h1 class="text-success-emphasis" style="font-family: 'Nunito', sans-serif;">foodplatter</h1>
                                     </div>
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">成為優秀的foodplatter平台管理者!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">成為優秀的平台管理者!</h1>
                                     </div>
                                     <?php
                                     if (isset($_SESSION["error"]["times"]) && $_SESSION["error"]["times"] > 50) :

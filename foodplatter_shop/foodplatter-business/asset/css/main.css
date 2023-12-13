@@ -1,0 +1,22 @@
+.btn {
+  background: #02078e;
+  border: #02078e;
+  color: white !important;
+}
+
+.btn:hover {
+  background: #0008fc;
+  border: #0008fc;
+}
+
+.forgot:hover {
+  color: red;
+}
+
+.btn-cancel {
+  background-color: grey !important;
+}
+
+.btn-cancel:hover {
+  background-color: rgb(159, 159, 159) !important;
+} /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,68 @@
+.object-fit-cover {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+body header div.adminInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 5px 10px rgb(192, 191, 191);
+}
+body header div.adminInfo .logo a {
+  font-size: 2rem;
+  font-weight: 700;
+}
+body header div.adminInfo .admin {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  margin-right: 1%;
+}
+body header div.adminInfo .admin .left {
+  display: flex;
+  align-items: center;
+}
+body header div.adminInfo .admin .left p {
+  width: 160px;
+  font-size: 1.2rem;
+  padding-top: 6%;
+  padding-right: 2%;
+}
+body header div.adminInfo .admin .left .adminImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+body header div.adminInfo .admin .signout {
+  margin-left: 3rem;
+  font-size: 2.7rem;
+}
+body main section.left nav .bussinessNav {
+  width: 15vw;
+  height: calc(100vh - 64.8px);
+  background-color: #14403f;
+  color: aliceblue;
+}
+body main section.left nav ul li {
+  font-size: 1.2rem;
+}
+body main section.left nav ul li .active {
+  border-left: 5px solid whitesmoke;
+  background: rgba(255, 255, 255, 0.2);
+  padding-left: 1.5rem;
+}
+body main section.left nav ul li a {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+body main section.left nav ul li a:hover {
+  border-left: 5px solid whitesmoke;
+  background: rgba(255, 255, 255, 0.2);
+  padding-left: 1.5rem;
+}
+body main section.left nav ul li .main {
+  margin-top: 2rem;
+}/*# sourceMappingURL=bussiness.css.map */

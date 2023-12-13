@@ -401,7 +401,7 @@ $result = $conn->query($sql);
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="bi bi-exclamation-circle fa-2x text-danger"></i>
+                      <i class="bi bi bi-ban fa-2x text-danger"></i>
                     </div>
                   </div>
                 </div>
@@ -642,11 +642,11 @@ $result = $conn->query($sql);
 
                         <td class="align-middle text-center">
                           <?php if ($var == 3) : ?>
-                            <a class="btn btn-success mx-1" href="doResetCert.php?var=3&shop_id=<?= $row["shop_id"] ?>" title="還原狀態"><i class="bi bi-arrow-clockwise"></i></a>
+                            <a class="btn btn-info mx-1" href="doResetCert.php?var=3&shop_id=<?= $row["shop_id"] ?>" title="還原狀態"><i class="bi bi-arrow-clockwise"></i></a>
                             <!-- 刪除按鈕，觸發刪除確認視窗 -->
                             <a class="btn btn-danger mx-1" title="複審核不通過" type="button" data-toggle="modal" data-target="#exampleModalLong1<?= $row["shop_id"] ?>"><i class="bi bi-ban"></i></a>
                           <?php else : ?>
-                            <a class="btn btn-success mx-1" href="doResetCert.php?var=2&shop_id=<?= $row["shop_id"] ?>" title="還原狀態"><i class="bi bi-arrow-clockwise"></i></a>
+                            <a class="btn btn-info mx-1" href="doResetCert.php?var=2&shop_id=<?= $row["shop_id"] ?>" title="還原狀態"><i class="bi bi-arrow-clockwise"></i></a>
                           <?php endif; ?>
                         </td>
                       </tr>

@@ -256,11 +256,34 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">會員管理</h1>
-          <p class="mb-4">
-            對平台或組織的會員進行有效監控、維護和操作的一系列功能，包括註冊、資料更新、權限管理和互動追蹤等。
-          </p>
+          <div class="d-flex justify-content-between">
+            <div>
+              <!-- Page Heading -->
+              <h1 class="h3 mb-2 text-gray-800">會員管理</h1>
+              <p class="mb-4">
+                對平台或組織的會員進行有效監控、維護和操作的一系列功能，包括註冊、資料更新、權限管理和互動追蹤等。
+              </p>
+            </div>
+            <!-- 已刪除會員 -->
+            <a class="col-xl-3 col-md-6 btn " href="#.php">
+              <div class="card border-left-danger shadow h-100btn-light ">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col">
+                      <div class="text-lg font-weight-bold text-danger text-uppercase">
+                        已刪除會員
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="bi bi-exclamation-lg fa-3x text-danger"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+
           <!-- 按鈕組 -->
           <div class="d-flex justify-content-end">
             <div class="btn-group m-2">

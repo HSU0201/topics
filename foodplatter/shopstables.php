@@ -409,7 +409,7 @@ $result = $conn->query($sql);
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="bi bi-exclamation-circle fa-2x text-danger"></i>
+                      <i class="bi bi bi-ban fa-2x text-danger"></i>
                     </div>
                   </div>
                 </div>

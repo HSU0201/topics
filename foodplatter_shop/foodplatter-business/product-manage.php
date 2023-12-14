@@ -25,7 +25,7 @@ $resultTotal = $conn->query($sqlTotal);
 $totalProduct = $resultTotal->num_rows;
 
 // 食物分類
-$sqlCategory = "SELECT * FROM food_category WHERE food_valid=1 AND foodCategory_id=$id";
+$sqlCategory = "SELECT shopinfo.* , food_category.* FROM food_category JOIN shopinfo ON food_category.foodCategory_id = shopinfo.main_category WHERE food_valid=1 AND shopinfo.shop_id=$id";
 $resultCategory = $conn->query($sqlCategory);
 $rowsCategory = $resultCategory->fetch_all(MYSQLI_ASSOC);
 

@@ -392,7 +392,7 @@ while ($row = $result->fetch_assoc()) {
                                     <?php foreach ($rows as $row) : ?>
                                         <tr>
                                             <td>
-                                                <img class="object-fit-cover" src="../foodimg/<?= $row["food_img"] ?>" alt="">
+                                                <img class="object-fit-cover" src="./asset/img/<?= $row["food_img"] ?>" alt="">
 
                                             </td>
                                             <td>

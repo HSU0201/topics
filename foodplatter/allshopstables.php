@@ -435,21 +435,21 @@ $result = $conn->query($sql);
                 <?php if (!isset($_GET["search"])) : ?>
                   <div class="d-flex justify-content-end">
                     <div class="btn-group m-2">
-                      <a href="shopstables.php?page=<?= $page ?>&order=1" class="btn btn-outline-primary <?php if ($order == 1) echo "active" ?>">
+                      <a href="allshopstables.php?page=<?= $page ?>&order=1" class="btn btn-outline-primary <?php if ($order == 1) echo "active" ?>">
                         id
                         <i class="bi bi-sort-down-alt"></i>
                       </a>
-                      <a href="shopstables.php?page=<?= $page ?>&order=2" class="btn btn-outline-primary <?php if ($order == 2) echo "active" ?>">
+                      <a href="allshopstables.php?page=<?= $page ?>&order=2" class="btn btn-outline-primary <?php if ($order == 2) echo "active" ?>">
                         id
                         <i class="bi bi-sort-up"></i>
                       </a>
                     </div>
                     <div class="btn-group m-2">
-                      <a href="shopstables.php?page=<?= $page ?>&order=3" class="btn btn-outline-primary <?php if ($order == 3) echo "active" ?>">
+                      <a href="allshopstables.php?page=<?= $page ?>&order=3" class="btn btn-outline-primary <?php if ($order == 3) echo "active" ?>">
                         最新修改時間
                         <i class="bi bi-sort-down-alt"></i>
                       </a>
-                      <a href="shopstables.php?page=<?= $page ?>&order=4" class="btn btn-outline-primary <?php if ($order == 4) echo "active" ?>">
+                      <a href="allshopstables.php?page=<?= $page ?>&order=4" class="btn btn-outline-primary <?php if ($order == 4) echo "active" ?>">
                         最後修改時間
                         <i class="bi bi-sort-up"></i>
                       </a>

@@ -3,14 +3,14 @@
 require_once("foodplatter_connect.php");
 
 // 計算總會員數
-$sqlTotal = "SELECT * FROM users WHERE user_valid=1";
-$resultTotal = $conn->query($sqlTotal);
+$sqlDelTotal = "SELECT * FROM users WHERE user_valid=0";
+$resultDelTotal = $conn->query($sqlDelTotal);
 // 取得總會員數量
-$totalusers = $resultTotal->num_rows;
+$totalDelusers = $resultDelTotal->num_rows;
 // 每頁顯示的會員數
 $perPage = 10;
 // 進行無條件進位的相除操作，計算總頁數
-$pageCount = ceil($totalusers / $perPage);
+$pageCount = ceil($totalDelusers / $perPage);
 
 
 
@@ -21,7 +21,7 @@ if (isset($_GET["search"])) {
   $search = $_GET["search"];
 
   // 使用 "search" 參數來篩選查詢
-  $sql = "SELECT * FROM users WHERE user_name LIKE '%$search%' AND user_valid=1";
+  $sql = "SELECT * FROM users WHERE user_name LIKE '%$search%' AND user_valid=0";
 }
 // 檢查是否有分頁參數
 elseif (isset($_GET["page"]) && isset($_GET["order"])) {
@@ -48,7 +48,7 @@ elseif (isset($_GET["page"]) && isset($_GET["order"])) {
   $startItem = ($page - 1) * $perPage;
 
   // 如果沒有 "search" 參數，使用基本的查詢
-  $sql = "SELECT * FROM users WHERE user_valid = 1 ORDER BY $orderSql LIMIT $startItem, $perPage";
+  $sql = "SELECT * FROM users WHERE user_valid = 0 ORDER BY $orderSql LIMIT $startItem, $perPage";
   // 並不包含第一筆資料，而是包含從第二筆資料開始的 $perPage 筆資料。
   // LIMIT [從哪個參數開始],[獲取幾筆資料]
   // ASC 升冪排序 
@@ -58,7 +58,7 @@ elseif (isset($_GET["page"]) && isset($_GET["order"])) {
 else {
   $page = 1;
   $order = 1;
-  $sql = "SELECT * FROM users WHERE user_valid = 1 ORDER BY user_id ASC LIMIT 0, $perPage";
+  $sql = "SELECT * FROM users WHERE user_valid = 0 ORDER BY user_id ASC LIMIT 0, $perPage";
 }
 
 // 執行 SQL 查詢，並將結果存儲在 $result 變數中
@@ -265,17 +265,17 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
               </p>
             </div>
             <!-- 已刪除會員 -->
-            <a class="col-xl-3 col-md-6 btn " href="deluserstables.php">
-              <div class="card border-left-danger shadow h-100btn-light ">
+            <a class="col-xl-3 col-md-6 btn " href="userstables.php">
+              <div class="card border-left-info shadow h-100btn-light ">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col">
-                      <div class="text-lg font-weight-bold text-danger text-uppercase">
-                        已刪除會員
+                      <div class="text-lg font-weight-bold text-info text-uppercase">
+                        會員列表
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="bi bi-exclamation-lg fa-3x text-danger"></i>
+                      <i class="bi bi-exclamation-lg fa-3x text-info"></i>
                     </div>
                   </div>
                 </div>
@@ -308,6 +308,14 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             </div>
           </div>
           <!-- 按鈕組結束 -->
+
+          <div>
+            <?php
+            // $rows = $result->fetch_all(MYSQLI_BOTH);
+
+            // var_dump($rows);
+            ?>
+          </div>
 
           <?php if ($userCount > 0) : ?>
             <!-- DataTales Example -->

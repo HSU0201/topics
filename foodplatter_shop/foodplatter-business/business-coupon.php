@@ -4,12 +4,14 @@ require_once("./asset/connect/pdo_connect.php");
 
 $currentUrl = $_SERVER['REQUEST_URI'];
 $_SESSION['currentUrl'] = $currentUrl;
-$shop_id = $_SESSION["user"]["shop_id"];
+$shop_id = $_SESSION['user']['shop_id'];
 
 if(!isset($shop_id)){
   die('請循正常管道進入此頁');
 }
-
+if (isset($_SESSION['certified']['error'])) {
+  $certified_error = $_SESSION['certified']['error'];
+}
 
 $today = date('Y-m-d');
 
@@ -252,7 +254,7 @@ $rowA = $stmt->fetch(PDO::FETCH_ASSOC);
         <!-- Begin Page Content -->
         <main>
           <!-- Page Heading -->
-          <h1 class="h3 mb-0 mx-4 my-3 text-gray-800">優惠券一覽</h1>
+          <h1 class="h3 mb-0 mx-4 my-3 text-gray-800">優惠券一覽 <span style="color: red;font-size:1rem"><?php echo isset($certified_error) ? $certified_error : "" ?></span></h1>
           <!-- 刪除確認modal -->
           <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">

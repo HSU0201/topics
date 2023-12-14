@@ -1,6 +1,7 @@
 <?php
 require_once('./asset/connect/pdo_connect.php');
 session_start();
+$shop_id = $_SESSION['user']['shop_id'];
 
 if(isset($_SESSION['coupon_id'])):
   $_POST['coupon_id'] = $_SESSION['coupon_id'];
@@ -20,6 +21,15 @@ $stmt->bindParam(':coupon_id', $coupon_id);
 $stmt->execute();
 
 $rows = $stmt->fetch(PDO::FETCH_ASSOC);
+if (isset($_SESSION["certified"]["error"])) {
+  $certified_error = $_SESSION["certified"]["error"];
+}
+
+$sqlA = "SELECT * FROM shopinfo WHERE shop_id=:shop_id";
+$stmt = $pdo->prepare($sqlA);
+$stmt->bindParam(':shop_id', $shop_id, PDO::PARAM_INT);
+$stmt->execute();
+$rowA = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +62,7 @@ $rows = $stmt->fetch(PDO::FETCH_ASSOC);
     <!--側邊欄-->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!--側邊欄 -品牌-->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="bi bi-slack"></i>
         </div>
@@ -64,7 +74,7 @@ $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 
       <!--導航項目 -儀表板-->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <span><i class="bi bi-house-fill"></i>&nbsp;&nbsp;主頁</span>
         </a>
       </li>
@@ -77,7 +87,7 @@ $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 
       <!--導航項目 -表格-->
       <li class="nav-item">
-        <a class="nav-link" href="./product-manage.html">
+        <a class="nav-link" href="product-manage.php">
           <i class="bi bi-shop"></i>
           <span>商品管理</span></a>
       </li>
@@ -137,8 +147,8 @@ $rows = $stmt->fetch(PDO::FETCH_ASSOC);
             <!--導航項目 -使用者資訊-->
             <li class="nav-item dropdown no-arrow d-flex">
               <div class="nav-link" href="#" id="">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hello! 八方雲集急急急</span>
-                <img class="img-profile rounded-circle" src="./asset/img/eightCloud.jpg" />
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hello! <?=$rowA['shop_name']?></span>
+                <img class="img-profile rounded-circle" src="./asset/img/<?=$rowA["shop_img"]?>" />
               </div>
 
               <div class="topbar-divider d-none d-sm-block"></div>
@@ -154,7 +164,7 @@ $rows = $stmt->fetch(PDO::FETCH_ASSOC);
         <!-- Begin Page Content -->
         <main>
           <!-- Page Heading -->
-          <h1 class="h3 mb-0 mx-4 text-gray-800">修改優惠券</h1>
+          <h1 class="h3 mb-0 mx-4 text-gray-800">修改優惠券 <span style="color: red;font-size:1rem"><?php echo isset($certified_error) ? $certified_error : "" ?></span></h1>
           <!-- Content Row -->
           <form class="row p-5 need-validation" id="coupon-info" method="post" action="doUpdateCoupon.php" novalidate>
             <div class="mb-3 col-12 d-none">
@@ -258,7 +268,7 @@ $rows = $stmt->fetch(PDO::FETCH_ASSOC);
           <button class="btn btn-secondary" type="button" data-dismiss="modal">
             Cancel
           </button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="doLogOut.php">Logout</a>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ if (!isset($_SESSION["user"])) {
 }
 if (isset($_SESSION["certified"]["error"])) {
     $certified_error = $_SESSION["certified"]["error"];
-  }
+}
 
 $id = $_SESSION["user"]["shop_id"];
 if (isset($_SESSION["certified"]["error"])) {
@@ -322,7 +322,7 @@ while ($row = $result->fetch_assoc()) {
                         <div class="d-sm-flex align-items-center justify-content-end mb-4 ">
                             <a class="btn btn-danger text-white btn-no-border shadow-sm mx-2" href="./delete-product-manage.php" title="已刪除的商品 ">已刪除的商品 <i class="bi bi-trash3"></i></a>
 
-                            <a class="btn btn-success text-white btn-no-border  shadow-sm" href="./add-food.php" title="增加商品">增加商品 <i class="bi bi-plus-circle"></i></a>
+                            <a class="btn btn-success text-white btn-no-border  shadow-sm" href="add-food.php" title="增加商品">增加商品 <i class="bi bi-plus-circle"></i></a>
                         </div>
 
                     </div>
@@ -416,7 +416,9 @@ while ($row = $result->fetch_assoc()) {
                                     <?php foreach ($rows as $row) : ?>
                                         <tr>
                                             <td>
-                                                <img class="object-fit-cover" src="../foodimg/<?= $row["food_img"] ?>" alt="">
+                                                <!-- //" -->
+
+                                                <img class="object-fit-cover" src="./asset/img/<?= $row["food_img"] ?>" alt="">
                                             </td>
                                             <td>
                                                 <a href="#">

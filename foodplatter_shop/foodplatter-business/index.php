@@ -118,7 +118,7 @@ $row = $result->fetch_assoc();
       </li>
       <!--導航項目 -表格-->
       <li class="nav-item">
-        <a class="nav-link" href="./business-coupon.html">
+        <a class="nav-link" href="business-coupon.php">
           <i class="bi bi-ticket-perforated"></i>
           <span>優惠卷管理</span></a>
       </li>

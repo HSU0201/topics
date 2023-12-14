@@ -123,7 +123,7 @@ $row = $result->fetch_assoc();
     <!--側邊欄-->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!--側邊欄 -品牌-->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="bi bi-slack"></i>
         </div>
@@ -135,7 +135,7 @@ $row = $result->fetch_assoc();
 
       <!--導航項目 -儀表板-->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <span><i class="bi bi-house-fill"></i>&nbsp;&nbsp;主頁</span>
         </a>
       </li>
@@ -148,7 +148,7 @@ $row = $result->fetch_assoc();
 
       <!--導航項目 -表格-->
       <li class="nav-item">
-        <a class="nav-link" href="./product-manage.html">
+        <a class="nav-link" href="product-manage.php">
           <i class="bi bi-shop"></i>
           <span>商品管理</span></a>
       </li>

@@ -39,6 +39,18 @@ if(email($email)){
     exit;
 }
 
+$sql="SELECT * FROM users WHERE user_email='$email'";
+$result=$conn->query($sql);
+$rowCount=$result->num_rows;
+echo $rowCount;
+if($rowCount==0){
+    $message="此帳號不存在，請至註冊頁面註冊此帳號";
+    $_SESSION["error"]["message"]=$message;
+    header("location:user_signin.php");
+    exit;
+    
+}
+
 if(empty($password)){
     $message="請輸入密碼";
     $_SESSION["error"]["message"]=$message;
@@ -65,7 +77,7 @@ if($result->num_rows==0){
     }else{
         $_SESSION["error"]["times"]=1;
     }
-    $message="帳號或密碼錯誤";
+    $message="帳號或密碼錯誤<br>錯誤次數:".$_SESSION["error"]["times"]."，若次數達5次將失去登入資格";
     $_SESSION["error"]["message"]=$message;
     header("location:user_signin.php");
     exit;

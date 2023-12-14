@@ -53,52 +53,16 @@ $zip=$_POST["zip"];
 // date_default_timezone_set('Asia/Taipei');
 $time=date('Y-m-d H:i:s');
 
-function email($emailcheck){
-    $emailPattern = '/^\w+([-+.]?\w+)*@[a-zA-Z]+([-.][a-zA-Z]+)*\.[a-zA-Z]+$/';
-    if (preg_match($emailPattern, $emailcheck)) {
-        return true; // 驗證通過
-    }
-};
 
-if(email($email)){
 
-}else{
-    $message="請輸入正確信箱格式";
-    $_SESSION["error"]["message"]=$message;
-    header("location:user_edit.php");
-    // echo "請輸入email";
-    exit;
-}
 
-function phone($phonecheck){
-    $phonePattern = '/^09\d{8}$/';
-    if (preg_match($phonePattern, $phonecheck)) {
-        return true; // 驗證通過
-    }
-};
 
-if(phone($phone)){
-
-}else{
-    $message="請輸入正確電話格式";
-    $_SESSION["error"]["message"]=$message;
-    header("location:user_edit.php");
-    // echo "請輸入email";
-    exit;
-}
-
-$emailsql="SELECT * FROM users WHERE user_email='$email'";
+$emailsql="SELECT * FROM users WHERE user_email='$email' AND user_id != '$id'";
 $emailresult=$conn->query($emailsql);
 $emailrowCount=$emailresult->num_rows;
 echo $emailrowCount;
 // 這裡偵測是1因為已經有一筆他自己的
-if($emailrowCount>1){
-    $message="此帳號已經存在";
-    $_SESSION["error"]["message"]=$message;
-    header("location:user_edit.php");
-    exit;
-    
-}
+
 
 if(empty($name)){
     $message="請輸入姓名";
@@ -117,8 +81,50 @@ if(empty($email)){
     exit;
 }
 
+function email($emailcheck){
+    $emailPattern = '/^\w+([-+.]?\w+)*@[a-zA-Z]+([-.][a-zA-Z]+)*\.[a-zA-Z]+$/';
+    if (preg_match($emailPattern, $emailcheck)) {
+        return true; // 驗證通過
+    }
+};
+
+if(email($email)){
+
+}else{
+    $message="請輸入正確信箱格式";
+    $_SESSION["error"]["message"]=$message;
+    header("location:user_edit.php");
+    // echo "請輸入email";
+    exit;
+}
+
+if($emailrowCount>0){
+    $message="此帳號已經存在";
+    $_SESSION["error"]["message"]=$message;
+    header("location:user_edit.php");
+    exit;
+    
+}
+
 if(empty($phone)){
     $message="請輸入電話";
+    $_SESSION["error"]["message"]=$message;
+    header("location:user_edit.php");
+    // echo "請輸入email";
+    exit;
+}
+
+function phone($phonecheck){
+    $phonePattern = '/^09\d{8}$/';
+    if (preg_match($phonePattern, $phonecheck)) {
+        return true; // 驗證通過
+    }
+};
+
+if(phone($phone)){
+
+}else{
+    $message="請輸入正確電話格式";
     $_SESSION["error"]["message"]=$message;
     header("location:user_edit.php");
     // echo "請輸入email";

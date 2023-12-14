@@ -141,9 +141,9 @@ if(isset($_SESSION["user"])){
                   <h1 class="mb-4 title">歡迎回來 foodplatter!</h1>
               </div>
               <?php
-              if(isset($_SESSION["error"]["times"]) && $_SESSION["error"]["times"]>5):
+              if(isset($_SESSION["error"]["times"]) && $_SESSION["error"]["times"]>4):
               ?>
-                  <div class="text-warning text-center">錯誤次數已達上限，請稍後再試</div>
+                  <div class="text-warning text-center">錯誤次數已達上限，已失去登入資格<br><br><i class="bi bi-emoji-frown h1"></i>  <i class="bi bi-emoji-frown h1"></i>  <i class="bi bi-emoji-frown h1"></i></div>
               <?php else:?>
               <form class="user" action="UserSignin.php" method="post">
                   <div class="form-group">
@@ -155,6 +155,8 @@ if(isset($_SESSION["user"])){
                       <input type="password" class="form-control form-control-user"
                           id="password" name="password" placeholder="請輸入密碼">
                   </div>
+                  <!-- Remember me -->
+                  
                   <?php
                   if(isset($_SESSION["error"]["message"])):?>
                   <div class="text-warning"><?php echo $_SESSION["error"]["message"] ?></div>
@@ -183,6 +185,23 @@ if(isset($_SESSION["user"])){
   <?php
     unset($_SESSION["error"]["message"]);
   ?>
+
+  <script>
+    const eye=document.querySelector(".eye")
+    const passwordinput=document.querySelector(".passwordinput")
+
+    eye.addEventListener("click",function(e){
+        e.stopPropagation()
+        // 用事件物件阻止他?
+        console.log("toggle click");
+        let menuStatus=menu.innerText;
+        if(menuStatus=="open"){
+            menu.innerText="close";
+        }else{
+            menu.innerText="open";
+        }
+    })
+  </script>
 
   
   

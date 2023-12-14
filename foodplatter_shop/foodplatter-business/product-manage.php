@@ -173,7 +173,7 @@ while ($row = $result->fetch_assoc()) {
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">
                         取消
                     </button>
-                    <a class="btn btn-ppp " href="business-login.php">登出</a>
+                    <a class="btn btn-ppp " href="doLogOut.php">登出</a>
                 </div>
             </div>
         </div>
@@ -242,7 +242,7 @@ while ($row = $result->fetch_assoc()) {
             </li>
             <!--導航項目 -表格 -優惠卷管理-->
             <li class="nav-item">
-                <a class="nav-link" href="./foodplatter-bussiness/bussiness-coupon.html">
+                <a class="nav-link" href="business-coupon.php">
                     <i class="bi bi-ticket-perforated"></i>
                     <span>優惠卷管理</span></a>
             </li>
@@ -421,7 +421,7 @@ while ($row = $result->fetch_assoc()) {
                                                 <img class="object-fit-cover" src="./asset/img/<?= $row["food_img"] ?>" alt="">
                                             </td>
                                             <td>
-                                                <a href="#">
+                                                <a href="doFood-edit.php?food_id=<?= $row["food_id"] ?>">
                                                     <h5><?= $row["food_name"] ?></h5>
                                                 </a>
                                                 <?= $row["food_intro"] ?>

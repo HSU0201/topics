@@ -90,7 +90,7 @@ $result = $conn->query($sql);
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>商家管理</title>
+  <title>認證管理</title>
 
   <!--此模板的自訂字體-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -317,7 +317,7 @@ $result = $conn->query($sql);
               </div>
             </a>
             <!-- 所有 -->
-            <div class="col-xl-4 col-md-6 mb-4 btn">
+            <a class="col-xl-4 col-md-6 mb-4 btn" href="allshopstables.php">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -335,7 +335,7 @@ $result = $conn->query($sql);
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
 
             <!-- 已認證 -->
             <a class="col-xl-8 col-md-6 mb-4 btn" href="shopstables.php">

@@ -30,9 +30,9 @@ $sql = "SELECT food_list.*,food_category.name FROM food_list
 JOIN food_category ON food_list.category_id = food_category.id
 WHERE food_list.food_id=$food_id AND food_list.food_valid=1";
 
-$categorychooseSql= "SELECT * FROM food_category WHERE foodCategory_id=11";
-$categorychooseresult=$conn->query($categorychooseSql);
-$categorychooserows=$categorychooseresult->fetch_all(MYSQLI_ASSOC);
+// $categorychooseSql= "SELECT * FROM food_category WHERE foodCategory_id=11";
+// $categorychooseresult=$conn->query($categorychooseSql);
+// $categorychooserows=$categorychooseresult->fetch_all(MYSQLI_ASSOC);
 // 執行 SQL 查詢
 // ??????????????
 // $result = $conn->query($sql);
@@ -160,7 +160,7 @@ $shop = $resultB->fetch_assoc();
       </li>
       <!--導航項目 -表格-->
       <li class="nav-item">
-        <a class="nav-link" href="../coupons.html">
+        <a class="nav-link" href="business-coupon.php">
           <i class="bi bi-ticket-perforated"></i>
           <span>優惠卷管理</span></a>
       </li>
@@ -238,7 +238,7 @@ $shop = $resultB->fetch_assoc();
             <h3 style="font-weight: 800; letter-spacing: 2px;">商品編輯 <span style="color: red;font-size:1rem"><?php echo isset($certified_error) ? $certified_error : "" ?></span></h3>
             <br>
 
-            <form action="doUpdatefood.php" method="post">
+            <form action="doUpdatefood.php" method="post"  enctype="multipart/form-data">
               
                 <input type="hidden" name="food_id" value="<?= $rows["food_id"] ?>">
                 <div class="row">
@@ -256,14 +256,14 @@ $shop = $resultB->fetch_assoc();
                         </td>
                       </tr>
                       <tr>
+                      <!-- 插眼 -->
                         <th style="color: gray; text-align: center;">商品分類</th>
                         <td>
                           <select class="form-select" name="category_id" aria-label="Default select example">
-                            <option selected value="">請選擇商品分類</option>
+                            <option selected value="<?=$rows["category_id"]?>">請選擇商品分類</option>
                             <?php foreach($rowsA as $categorychooserow):?>
-                            <option value="<?= $categorychooserow["foodCategory_id"] ?>"><?= $categorychooserow["name"] ?></option>
+                            <option value="<?= $categorychooserow["id"] ?>"><?= $categorychooserow["name"] ?></option>
                             <?php endforeach;?> 
-                            <?= $categorychooserow["name"] ?>
                           </select>
                          
                         </td>
@@ -283,21 +283,19 @@ $shop = $resultB->fetch_assoc();
                     </table>
                   </div>
                 </div>
-              
-              <div class="py-5 d-flex justify-content-between">
-                <div class="imgload">
-                  <input type="file" onchange="readURL(this)" targetID="preview_progressbarTW_img" accept="image/gif, image/jpeg, image/png">
+                <div class="imgload input-group d-flex justify-content-center" style="max-width:380px"  >
+                  <input type="file" class="form-control" style="max-width:320px"  name="product_image" onchange="readURL(this)" targetID="preview_progressbarTW_img" accept="image/gif, image/jpeg, image/png">
                 </div>
+              <div class="py-5 d-flex justify-content-end">
+                
 
                 <!-- 按鈕 -->
-                <div>
+                <div class="d-flex" >
                   
-                  <div class="user-button">
-                    <button class="btn btn-primary text-white" id="btn-color" type="submit">儲存</button>
-                  </div>
+                    <button class="btn btn-primary text-white mx-2" id="btn-color" type="submit">儲存</button>
                   <!-- </form> -->
-                  <button class="btn text-white" id="btn-color" href="product-manage.php">取消</button>
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#alertModal<?= $row["food_id"] ?>" class="btn btn-danger">刪除</button>
+                  <a class="btn btn-secondary text-white " href="product-manage.php">取消</a>
+                 
                 </div>
 
                 <!-- 彈跳視窗 -->

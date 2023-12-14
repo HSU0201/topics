@@ -34,7 +34,7 @@ $removeResult = $resultRemoveTotal->num_rows;
 // 每頁顯示的商家數
 $perPage = 10;
 // 進行無條件進位的相除操作，計算總頁數
-$pageCount = ceil($certResult / $perPage);
+$pageCount = ceil($allResult / $perPage);
 
 // ----------------------------------------------------------------------------------------
 // 檢查是否有 GET 請求中的 "search" 參數
@@ -43,7 +43,7 @@ if (isset($_GET["search"])) {
   $search = $_GET["search"];
 
   // 使用 "search" 參數來篩選查詢
-  $sql = "SELECT * FROM shopinfo WHERE shop_name LIKE '%$search%' AND shop_valid=1 AND certified=1";
+  $sql = "SELECT * FROM shopinfo WHERE shop_name LIKE '%$search%'";
 }
 // 檢查是否有分頁參數
 elseif (isset($_GET["page"]) && isset($_GET["order"])) {
@@ -70,7 +70,7 @@ elseif (isset($_GET["page"]) && isset($_GET["order"])) {
   $startItem = ($page - 1) * $perPage;
 
   // 如果沒有 "search" 參數，使用基本的查詢
-  $sql = "SELECT * FROM shopinfo WHERE shop_valid = 1 AND certified=1 ORDER BY $orderSql LIMIT $startItem, $perPage";
+  $sql = "SELECT * FROM shopinfo ORDER BY $orderSql LIMIT $startItem, $perPage";
   // 並不包含第一筆資料，而是包含從第二筆資料開始的 $perPage 筆資料。
   // LIMIT [從哪個參數開始],[獲取幾筆資料]
   // ASC 升冪排序 
@@ -80,7 +80,7 @@ elseif (isset($_GET["page"]) && isset($_GET["order"])) {
 else {
   $page = 1;
   $order = 1;
-  $sql = "SELECT * FROM shopinfo WHERE shop_valid = 1 AND certified=1 ORDER BY shop_id ASC LIMIT 0, $perPage";
+  $sql = "SELECT * FROM shopinfo ORDER BY shop_id ASC LIMIT 0, $perPage";
 }
 
 // 執行 SQL 查詢，並將結果存儲在 $result 變數中
@@ -310,7 +310,7 @@ $result = $conn->query($sql);
         <div class="container-fluid">
           <div class="d-flex justify-content-between">
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">已認證商家管理</h1>
+            <h1 class="h3 mb-2 text-gray-800">已註冊商家管理</h1>
           </div>
           <div class="row">
             <!-- 申請認證中 -->
@@ -354,7 +354,7 @@ $result = $conn->query($sql);
               </div>
             </a>
             <!-- 所有 -->
-            <a class="col-xl-4 col-md-6 mb-4 btn" href="allshopstables.php">
+            <a class="col-xl-4 col-md-6 mb-4 btn bg-primary" href="allshopstables.php">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -375,7 +375,7 @@ $result = $conn->query($sql);
             </a>
 
             <!-- 已認證 -->
-            <a class="col-xl-8 col-md-6 mb-4 btn bg-success" href="shopstables.php">
+            <a class="col-xl-8 col-md-6 mb-4 btn " href="shopstables.php">
               <div class="card border-left-success shadow h-100 py-2 btn-light">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -430,26 +430,26 @@ $result = $conn->query($sql);
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
               <div class="card-header d-flex align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary"> <span class="text-success">已認證</span>商家列表</h6>
+                <h6 class="m-0 font-weight-bold text-primary"> <span class="text-primary">已註冊</span>商家列表</h6>
                 <!-- 按鈕組 -->
                 <?php if (!isset($_GET["search"])) : ?>
                   <div class="d-flex justify-content-end">
                     <div class="btn-group m-2">
-                      <a href="shopstables.php?page=<?= $page ?>&order=1" class="btn btn-outline-success <?php if ($order == 1) echo "active" ?>">
+                      <a href="shopstables.php?page=<?= $page ?>&order=1" class="btn btn-outline-primary <?php if ($order == 1) echo "active" ?>">
                         id
                         <i class="bi bi-sort-down-alt"></i>
                       </a>
-                      <a href="shopstables.php?page=<?= $page ?>&order=2" class="btn btn-outline-success <?php if ($order == 2) echo "active" ?>">
+                      <a href="shopstables.php?page=<?= $page ?>&order=2" class="btn btn-outline-primary <?php if ($order == 2) echo "active" ?>">
                         id
                         <i class="bi bi-sort-up"></i>
                       </a>
                     </div>
                     <div class="btn-group m-2">
-                      <a href="shopstables.php?page=<?= $page ?>&order=3" class="btn btn-outline-success <?php if ($order == 3) echo "active" ?>">
+                      <a href="shopstables.php?page=<?= $page ?>&order=3" class="btn btn-outline-primary <?php if ($order == 3) echo "active" ?>">
                         最新修改時間
                         <i class="bi bi-sort-down-alt"></i>
                       </a>
-                      <a href="shopstables.php?page=<?= $page ?>&order=4" class="btn btn-outline-success <?php if ($order == 4) echo "active" ?>">
+                      <a href="shopstables.php?page=<?= $page ?>&order=4" class="btn btn-outline-primary <?php if ($order == 4) echo "active" ?>">
                         最後修改時間
                         <i class="bi bi-sort-up"></i>
                       </a>
@@ -464,6 +464,7 @@ $result = $conn->query($sql);
                     <tr>
                       <th class="align-middle text-center">ID</th>
                       <th class="align-middle text-center">圖片</th>
+                      <th class="align-middle text-center">狀態</th>
                       <th class="align-middle text-center">商家名稱</th>
                       <th class="align-middle text-center">主分類</th>
                       <th class="align-middle text-center">副分類</th>
@@ -480,7 +481,34 @@ $result = $conn->query($sql);
                       <tr>
                         <td class="align-middle text-center"><?= $row["shop_id"] ?></td>
                         <td class="align-middle text-center">
-                          <img src="../foodplatter_shop/foodplatter-business/asset/img/<?=$row["shop_img"] ?>" style="width: 30px" alt="" />
+                          <img src="../foodplatter_shop/foodplatter-business/asset/img/<?= $row["shop_img"] ?>" style="width: 30px" alt="" />
+                        </td>
+                        <td class="align-middle text-center">
+                          <?php
+                          $cer = $row["certified"];
+                          if ($cer == 0) {
+                            $certext = "申請認證中";
+                            $style = "color: blue;";
+                            $href = "certificationtables.php";
+                            $icon = "<i class='bi bi-exclamation-lg text-blue-800'></i>";
+                          } else if ($cer == 1) {
+                            $certext = "已認證";
+                            $style = "color: green;";
+                            $href = "shopstables.php";
+                            $icon = "<i class='bi bi-check-all text-green-800'></i>";
+                          } else if ($cer == 2) {
+                            $certext = "已下架";
+                            $style = "color: red;";
+                            $href = "rejectCert.php?var=2";
+                            $icon = "<i class='bi bi bi-ban text-danger'></i>";
+                          } else if ($cer == 3) {
+                            $certext = "認證不通過";
+                            $style = "color: DarkGoldenRod;";
+                            $href = "rejectCert.php?var=3";
+                            $icon = "<i class='bi bi-dash-circle text-DarkGoldenRod'></i>";
+                          }
+                          echo '<a style="' . $style . '" href="' . $href . '">' . $certext . '</a>';
+                          ?>
                         </td>
                         <td class="align-middle text-center"><?= $row["shop_name"] ?></td>
                         <td class="align-middle text-center">
@@ -502,7 +530,7 @@ $result = $conn->query($sql);
                           ?>
                         </td>
                         <td class="align-middle text-center">
-                        <?php
+                          <?php
                           $mainCategory = $row["main_category"];
 
                           $mainCategories = [

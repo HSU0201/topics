@@ -1,8 +1,6 @@
 <?php 
 session_start();
-require_once("./asset/connect/db_connect.php");
-
-
+require_once("./asset/connect/pdo_connect.php");
 
 $currentUrl = $_SERVER['REQUEST_URI'];
 $_SESSION['currentUrl'] = $currentUrl;
@@ -10,7 +8,6 @@ $shop_id = $_SESSION["user"]["shop_id"];
 
 if(!isset($shop_id)){
   die('請循正常管道進入此頁');
-
 }
 
 
@@ -118,6 +115,11 @@ $stmt->execute();
 
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$sqlA = "SELECT * FROM shopinfo WHERE shop_id=:shop_id";
+$stmt = $pdo->prepare($sqlA);
+$stmt->bindParam(':shop_id', $shop_id, PDO::PARAM_INT);
+$stmt->execute();
+$rowA = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -129,7 +131,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>八方雲集後台系統</title>
+  <title><?=$rowA["shop_name"]?> 優惠卷系統</title>
 
   <!--此模板的自訂字體-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -140,6 +142,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <!--此模板的自訂樣式-->
   <link href="css/sb-admin-2.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="btn-business.css" />
 </head>
 
 <body id="page-top">
@@ -148,7 +151,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!--側邊欄-->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!--側邊欄 -品牌-->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="bi bi-slack"></i>
         </div>
@@ -160,7 +163,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       <!--導航項目 -儀表板-->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <span><i class="bi bi-house-fill"></i>&nbsp;&nbsp;主頁</span>
         </a>
       </li>
@@ -173,13 +176,13 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       <!--導航項目 -表格-->
       <li class="nav-item">
-        <a class="nav-link" href="./product-manage.html">
+        <a class="nav-link" href="product-manage.php">
           <i class="bi bi-shop"></i>
           <span>商品管理</span></a>
       </li>
       <!--導航項目 -表格-->
       <li class="nav-item active">
-        <a class="nav-link" href="./business-coupon.php">
+        <a class="nav-link" href="business-coupon.php">
           <i class="bi bi-ticket-perforated"></i>
           <span>優惠卷管理</span></a>
       </li>
@@ -233,8 +236,8 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <!--導航項目 -使用者資訊-->
             <li class="nav-item dropdown no-arrow d-flex">
               <div class="nav-link" href="#" id="">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hello! 八方雲集急急急</span>
-                <img class="img-profile rounded-circle" src="./asset/img/eightCloud.jpg" />
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hello! <?=$rowA['shop_name']?></span>
+                <img class="img-profile rounded-circle" src="./asset/img/<?=$rowA["shop_img"]?>" />
               </div>
 
               <div class="topbar-divider d-none d-sm-block"></div>
@@ -281,12 +284,12 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-dark">
                   確定要登出了嗎？
                 </div>
                 <div class="modal-footer">
-                  <button class="btn btn-business" type="button" data-dismiss="modal">取消</button>
-                  <a class="btn btn-danger" href="login.php">登出</a>
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                  <a class="btn btn-business" href="doLogOut.php">登出</a>
                 </div>
               </div>
             </div>
@@ -411,7 +414,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     // else:
                     //   echo '滿 '.$row['coupon_threshold'].' 元，折 '.$row['coupon_discount'].' 元';
                     // endif;
-                    echo $row['coupon_intro'];
+                    echo $row['coupon_introduce'];
                     ?>
                     
                   </td>

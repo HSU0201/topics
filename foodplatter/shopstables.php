@@ -482,7 +482,7 @@ $result = $conn->query($sql);
                         <td class="align-middle text-center">
                           <img src="../foodplatter_shop/foodplatter-business/asset/img/<?=$row["shop_img"] ?>" style="width: 30px" alt="" />
                         </td>
-                        <td class="align-middle text-center"><?= $row["shop_name"] ?></td>
+                        <td class="align-middle text-center" ><a href="shopsindex.php?shop_id=<?= $row["shop_id"] ?>"><?= $row["shop_name"] ?></a></td>
                         <td class="align-middle text-center">
                           <?php
                           $mainCategory = $row["main_category"];

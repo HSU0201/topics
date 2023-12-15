@@ -445,7 +445,7 @@ $result = $conn->query($sql);
                       <tr>
                         <td class="align-middle text-center"><?= $row["shop_id"] ?></td>
                         <td class="align-middle text-center">
-                          <img src="img/shop/<?= $row["shop_img"] ?>" style="width: 30px" alt="" />
+                          <img src="../foodplatter_shop/foodplatter-business/asset/img/<?= $row["shop_img"] ?>" style="width: 30px" alt="" />
                         </td>
                         <td class="align-middle text-center"><?= $row["shop_name"] ?></td>
                         <td class="align-middle text-center">

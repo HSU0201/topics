@@ -205,6 +205,7 @@ $row = $resultShop->fetch_assoc();
         <!-- Begin Page Content -->
         <main>
           <div class="container">
+            <a class="btn btn-outline-info " href="shopstables.php"><i class="bi bi-arrow-bar-left "></i>回商家列表</a>
             <div class="d-sm-flex align-items-center justify-content-between mb-4 container" style="margin-top: 3rem;">
               <p class="h2 mb-0 text-gray-800">詳細資訊 <span style="color: red;font-size:1rem"><?php echo isset($certified_error) ? $certified_error : "" ?></span></p>
             </div>

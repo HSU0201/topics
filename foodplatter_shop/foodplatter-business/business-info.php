@@ -138,7 +138,7 @@ if (isset($_SESSION["shop"]["introduce"])) {
                   <p class="text-secondary">密碼</p>
                 </div>
                 <div class="col-6">
-                  <input name="password" type="password" class="form-control form-control-user" aria-describedby="emailHelp" />
+                  <input name="password" type="password" class="form-control form-control-user" aria-describedby="emailHelp"  placeholder="請輸入密碼" />
                 </div>
                 <div class="col-6">
                   <input name="repassword" type="password" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="請重新輸入密碼" />
@@ -278,7 +278,7 @@ if (isset($_SESSION["shop"]["introduce"])) {
                 </div>
               </div> -->
               <div class="d-flex flex-column align-items-center">
-                <button type="submit" class=" bluid col-1 mt-2">
+                <button type="submit" class=" bluid col-1 mt-5">
                   註冊
                 </button>
 

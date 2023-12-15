@@ -401,7 +401,7 @@ $row = $result->fetch_assoc();
                     <tr>
                       <th scope="row">統一編號：</th>
 
-                      <td><input name="shop_tax" type="text" style="width: 37%" value="<?= $row["shop_tax"] ?>" maxlength="10" minlength="10" /></td>
+                      <td><input name="shop_tax" type="text" style="width: 37%" value="<?= $row["shop_tax"] ?>"  /></td>
                     </tr>
 
 

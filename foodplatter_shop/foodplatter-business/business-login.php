@@ -124,6 +124,9 @@ session_start();
             <?php if (isset($_SESSION["error"]["message"])) : ?>
               <div class="my-2 text-danger"><?= $_SESSION["error"]["message"] ?></div>
             <?php endif; ?>
+            <?php if (isset($_SESSION["success"]["message"])) : ?>
+              <div class="my-2 text-danger"><?= $_SESSION["success"]["message"] ?></div>
+            <?php endif; ?>
           </div>
           <div class="text-center">
             <a class="small forgot" href="user_signin_forget.html">忘記密碼</a>
@@ -135,7 +138,7 @@ session_start();
       </div>
     </div>
   </div>
-  <?php unset($_SESSION["error"]["message"]); ?>
+  <?php unset($_SESSION["success"]["message"]); ?>
 
 </body>
 

@@ -2,15 +2,13 @@
 session_start();
 require_once('pdo_connect.php');
 
-$_SESSION['shop_id'] = "1";
 
+$shop_id = $_SESSION['user']['shop_id'];
 $currentUrl = $_SERVER['REQUEST_URI'];
 $_SESSION['currentUrl'] = $currentUrl;
 
-if(!isset($_SESSION['shop_id'])):
+if(!isset($shop_id)):
   die('請循正常管道進入此頁');
-else:
-  $shop_id = $_SESSION['shop_id'];
 endif;
 
 $today = date('Y-m-d');

@@ -184,6 +184,8 @@ if ($_FILES["product_image"]["error"] == 0) {
         } else {
             header("location: business404.html");
         }
+        $messageSuccess= "註冊成功 !!";
+    $_SESSION["success"]["message"] = $messageSuccess;
     }
 } else {
     $message = "圖檔上傳失敗";

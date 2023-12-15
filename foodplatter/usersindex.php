@@ -11,7 +11,7 @@ $id = $_GET["user_id"];
 // 引入與資料庫連接的文件
 require("foodplatter_connect.php");
 // 構建 SQL 查詢語句，選擇資料庫中 foodplatter 表中 id 等於 $id 且 valid 等於 1 的記錄
-$sql = "SELECT * FROM users WHERE user_id=$id AND user_valid=1";
+$sql = "SELECT * FROM users WHERE user_id=$id ";
 // 執行 SQL 查詢
 $result = $conn->query($sql);
 // 從查詢結果中獲取一行記錄的關聯數組（associative array）
@@ -23,7 +23,7 @@ $userCount = $result->num_rows;
 $readrowsSql = "SELECT * FROM users";
 $readrowsTotal = $conn->query($readrowsSql);
 $totalrows = $readrowsTotal->num_rows;
-echo $totalrows;
+// echo $totalrows;
 ?>
 
 <!DOCTYPE html>
@@ -226,7 +226,13 @@ echo $totalrows;
           <div class="d-sm-flex align-items-center justify-content-center mb-4">
             <h1 class="h3 mb-0 text-gray-800">詳細資訊</h1>
           </div>
-
+          <div class="d-sm-flex align-items-center justify-content-center">
+            <?php
+            $user_valid = $row['user_valid'];
+            if ($user_valid == 0) echo "<p class='text-danger'>此用戶已經註銷</p>";
+            else echo ""; ?>
+          </div>
+    
           <!-- Content Row -->
           <div class="row">
             <!-- Area Chart -->
@@ -378,9 +384,9 @@ echo $totalrows;
     function updateAddUserId() {
       var currentUserId = <?php echo $id; ?>;
       var newUserId = currentUserId + 1;
-      var totalrows = <?php echo $totalrows?>;
+      var totalrows = <?php echo $totalrows ?>;
       if (newUserId >= totalrows) {
-        window.location.href = 'usersindex.php?user_id=<?php echo $totalrows?>';
+        window.location.href = 'usersindex.php?user_id=<?php echo $totalrows ?>';
       } else {
         window.location.href = 'usersindex.php?user_id=' + newUserId;
       }

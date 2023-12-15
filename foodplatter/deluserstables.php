@@ -478,39 +478,33 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         <td class="align-middle text-center">
                           <a class="btn btn-outline-dark mx-1" href="usersindex.php?user_id=<?= $row["user_id"] ?>" title="會員詳細資料"><i class="bi bi-info-circle"></i></a>
                           <!-- 刪除按鈕，觸發刪除確認視窗 -->
-                          <a id="fuck" class="btn btn-outline-danger mx-1" title="刪除會員資料" type="button" data-toggle="modal" data-target="#exampleModalLong<?= $row["user_id"] ?>"><i class="bi bi-trash"></i></a>
+                          <a id="fuck" class="btn btn-outline-danger mx-1" title="刪除會員資料" type="button" data-toggle="modal" data-target="#exampleModalLong<?= $row["user_id"] ?>"><i class="bi bi-arrow-clockwise"></i></a>
                         </td>
                         <!-- 刪除彈出視窗 -->
                         <div class="modal fade" id="exampleModalLong<?= $row["user_id"] ?>" tabindex="-1" role="dialog" aria-labelledby="deletetable" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="deletetable">移除會員</h5>
+                                <h5 class="modal-title" id="deletetable">還原會員</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">×</span>
                                 </button>
                               </div>
                               <div class="modal-body">
-                                確認要移除會員嗎?
+                                警告!!確認要還原會員嗎?
                               </div>
                               <div class="modal-footer">
                                 <a class="btn btn-secondary" type="button" data-dismiss="modal">
                                   取消
                                 </a>
-                                <a class="btn btn-primary" href="doDeleteUser.php?user_id=<?= $row["user_id"] ?>">
-                                  移除
+                                <a class="btn btn-primary" href="doResUser.php?user_id=<?= $row["user_id"] ?>">
+                                  還原
                                 </a>
                               </div>
                             </div>
                           </div>
                         </div>
                         <!-- 刪除彈出視窗結束 -->
-                        <script>
-                          function trigger() {
-                            var fuckbtn = document.getElementById("fuck");
-                            fuckbtn.click();
-                          }
-                        </script>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>

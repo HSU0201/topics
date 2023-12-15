@@ -75,6 +75,19 @@ if(email($email)){
     exit;
 }
 
+// 檢查重複的帳號有幾筆
+$sql="SELECT * FROM users WHERE user_email='$email'";
+$result=$conn->query($sql);
+$rowCount=$result->num_rows;
+echo $rowCount;
+if($rowCount>0){
+    $message="此帳號已經存在，請從登入頁面登入";
+    $_SESSION["error"]["message"]=$message;
+    header("location:user_register.php");
+    exit;
+    
+}
+
 if(empty($password)){
     $message="請輸入密碼";
     $_SESSION["error"]["message"]=$message;
@@ -100,18 +113,7 @@ if($password!=$repassword){
     exit;
 }
 
-// 檢查重複的帳號有幾筆
-$sql="SELECT * FROM users WHERE user_email='$email'";
-$result=$conn->query($sql);
-$rowCount=$result->num_rows;
-echo $rowCount;
-if($rowCount>0){
-    $message="此帳號已經存在，請從登入頁面登入";
-    $_SESSION["error"]["message"]=$message;
-    header("location:user_register.php");
-    exit;
-    
-}
+
 
 // 密碼加密
 $password=md5($password);

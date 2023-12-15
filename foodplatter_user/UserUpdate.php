@@ -99,7 +99,7 @@ if(email($email)){
 }
 
 if($emailrowCount>0){
-    $message="此帳號已經存在";
+    $message="此信箱已被其他人註冊，請使用其他信箱";
     $_SESSION["error"]["message"]=$message;
     header("location:user_edit.php");
     exit;

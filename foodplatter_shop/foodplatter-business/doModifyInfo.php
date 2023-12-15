@@ -3,7 +3,7 @@ require_once("./asset/connect/db_connect.php");
 session_start();
 
 if (!isset($_POST["shop_name"])) {
-    header("location: business404.html");
+    header("location: business404.php");
     exit;
 }
 $id = $_SESSION["user"]["shop_id"];

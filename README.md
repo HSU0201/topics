@@ -32,4 +32,4 @@
 - 設定優惠的使用日期和限制條件。
 
 
-**foodplatter_user、foodplatter_shop** 部分 則為其他同學開發
+## **foodplatter_user、foodplatter_shop** 部分 則為其他同學開發
